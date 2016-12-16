@@ -23,7 +23,7 @@ get_header();
 
     /* Form wrapper styling */
     .form-wrapper {
-        width: 450px;
+        width: 700px;
         padding: 15px;
         margin: 50px auto 17px auto;
         background: #444;
@@ -35,7 +35,7 @@ get_header();
     /* Form text input */
 
     .form-wrapper input {
-        width: 330px;
+        width: 580px;
         height: 20px;
         padding: 10px 5px;
         float: left;    
@@ -120,15 +120,23 @@ get_header();
         border: 0;
         padding: 0;
     }    
+    
+    h1{
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    p{
+        color: #fff;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
 </style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h1>Søg efter dit måltid </h1>
-            <p class="lead">Her kan du indtaste dine igredienser, og lade spisetid.nu finde dit næste måltid...</p>
+            <p class="lead">På spisetid.nu finder du inspiration til dit næste hjemmelavet måltid. <br>Det eneste du skal gøre er at indtaste de ingredienser du har i køkkenet, trykke på søge knappen og derefter vil passende opskrifter komme, så du slipper for en tur i supermarkedet! </p>
             <?php //echo do_shortcode("[huge_it_slider id='2']"); ?>
             <form class="form-wrapper cf">
-                <input type="text" placeholder="Skriv dine ingredienser her...">
+                <input type="text" placeholder="Skriv dine ingredienser her, separeret med et komma...">
                 <button type="submit">Søg</button>
             </form>
         </div>
