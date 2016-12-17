@@ -1,11 +1,21 @@
 <?php
-
 /*
   Template Name: Forside
  */
 
 get_header();
+/*
+  function dbConn(){
+  $serverName = "localhost";
+  $usrName = "spisetid-admin";
+  $pass = "minimum64D.";
+  $dbName = "spisetid";
+
+  $conn = new mysqli($serverName, $usrName, $pass, $dbName);
+  } */
 ?>
+
+
 <style type="text/css">
     .cf:before, .cf:after{
         content:"";
@@ -120,7 +130,7 @@ get_header();
         border: 0;
         padding: 0;
     }    
-    
+
     h1{
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
@@ -129,16 +139,54 @@ get_header();
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 </style>
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row-fluid">
+        <div class="span10 offset1">
             <h1>Søg efter dit måltid </h1>
             <p class="lead">På spisetid.nu finder du inspiration til dit næste hjemmelavet måltid. <br>Det eneste du skal gøre er at indtaste de ingredienser du har i køkkenet, trykke på søge knappen og derefter vil passende opskrifter komme, så du slipper for en tur i supermarkedet! </p>
-            <?php //echo do_shortcode("[huge_it_slider id='2']"); ?>
+            <?php //echo do_shortcode("[huge_it_slider id='2']");    ?>
             <form class="form-wrapper cf">
                 <input type="text" placeholder="Skriv dine ingredienser her, separeret med et komma...">
                 <button type="submit">Søg</button>
             </form>
+            <?php
+            $serverName = "localhost";
+            $usrName = "spisetid-admin";
+            $pass = "minimum64D.";
+            $dbName = "spisetid";
+
+            $conn = mysqli_connect($serverName, $usrName, $pass, $dbName);
+           
+            $query = "SELECT navn, kategori, antal, imageurl FROM opskrifter";
+            $data = mysqli_query($conn, $query);
+            $savedData = mysqli_fetch_all($data, MYSQLI_ASSOC);
+            mysqli_close($conn);
+            ?>
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Kategori</th>
+                        <th>Billede</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($savedData as $i => $recipe) {
+                        ?>
+                        <tr>
+                            <td><?php echo $recipe['navn'] ?></td>
+                            <td><?php echo $recipe['kategori'] ?></td>
+                            <td><?php $pic = $recipe['imageurl'];
+                                $pic = explode("_", $pic)[0];
+                                ?><img src="<?php echo $pic . "_97.jpg"?>"></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
