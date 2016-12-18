@@ -19,7 +19,7 @@ get_header();
 
             $conn = mysqli_connect($serverName, $usrName, $pass, $dbName);
 
-            $query = "SELECT navn, kategori, imageurl FROM opskrifter";
+            $query = "SELECT id, navn, kategori, importurl, imageurl FROM opskrifter";
             $data = mysqli_query($conn, $query);
             $savedData = mysqli_fetch_all($data, MYSQLI_ASSOC);
             mysqli_close($conn);
@@ -37,7 +37,7 @@ get_header();
                     foreach ($savedData as $i => $recipe) {
                         ?>
                         <tr>
-                            <td><?php echo $recipe['navn'] ?></td>
+                            <td><a href="<?php echo $recipe['importurl']?>"><?php echo $recipe['navn'] ?></a></td>
                             <td><?php echo $recipe['kategori'] ?></td>
                             <td><?php
                                 $pic = $recipe['imageurl'];
