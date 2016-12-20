@@ -140,53 +140,71 @@ get_header();
     }
 </style>
 
+
+<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#recipe_table').DataTable({
+            "order": [[0, "asc"]],
+            "bPaginate": true,
+            "oLanguage": {
+                "sSearch": "Søg:"},
+            "bInfo": false
+        });
+    });
+</script>
+
+<?php
+$serverName = "localhost";
+$usrName = "spisetid-admin";
+$pass = "minimum64D.";
+$dbName = "spisetid";
+
+$conn = mysqli_connect($serverName, $usrName, $pass, $dbName);
+
+$query = "SELECT id, navn, kategori, antal, importurl, imageurl FROM opskrifter";
+$data = mysqli_query($conn, $query);
+$savedData = mysqli_fetch_all($data, MYSQLI_ASSOC);
+mysqli_close($conn);
+?>
+
 <div class="container">
     <div class="row-fluid">
         <div class="span10 offset1">
             <h1>Søg efter dit måltid </h1>
             <p class="lead">På spisetid.nu finder du inspiration til dit næste hjemmelavet måltid. <br>Det eneste du skal gøre er at indtaste de ingredienser du har i køkkenet, trykke på søge knappen og derefter vil passende opskrifter komme, så du slipper for en tur i supermarkedet! </p>
             <?php //echo do_shortcode("[huge_it_slider id='2']");    ?>
-            <form class="form-wrapper cf">
+            <form class="form-wrapper cf" action="." role="form" method="POST">
                 <input type="text" placeholder="Skriv dine ingredienser her, separeret med et komma...">
                 <button type="submit">Søg</button>
-            </form>
-            <?php
-            $serverName = "localhost";
-            $usrName = "spisetid-admin";
-            $pass = "minimum64D.";
-            $dbName = "spisetid";
-
-            $conn = mysqli_connect($serverName, $usrName, $pass, $dbName);
-           
-            $query = "SELECT navn, kategori, antal, importurl, imageurl FROM opskrifter";
-            $data = mysqli_query($conn, $query);
-            $savedData = mysqli_fetch_all($data, MYSQLI_ASSOC);
-            mysqli_close($conn);
-            ?>
-            <table class="table" >
-                <thead>
-                    <tr>
-                        <th>Navn</th>
-                        <th>Kategori</th>
-                        <th>Billede</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($savedData as $i => $recipe) {
-                        ?>
+            
+                <table class="table" id="recipe_table">
+                    <thead>
                         <tr>
-                            <td><a href="<?php echo $recipe['importurl']?>"><?php echo $recipe['navn'] ?></a></td>
-                            <td><?php echo $recipe['kategori'] ?></td>
-                            <td><?php $pic = $recipe['imageurl'];
-                                $pic = explode("_", $pic)[0];
-                                ?><img src="<?php echo $pic . "_97.jpg"?>"></td>
+                            <th>Navn</th>
+                            <th>Kategori</th>
+                            <th>Billede</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        foreach ($savedData as $i => $recipe) {
+                            ?>
+                            <tr>
+                                <td><a href="<?php echo getenv('HTTP_HOST') . "/opskrifter/opskrift?recipe=" . $recipe['id']; ?>"><?php echo $recipe['navn'] ?></a></td>
+                                <td><?php echo $recipe['kategori'] ?></td>
+                                <td><?php
+                                    $pic = $recipe['imageurl'];
+                                    $pic = explode("_", $pic)[0];
+                                    ?><img src="<?php echo $pic . "_97.jpg" ?>"></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>

@@ -12,7 +12,11 @@ $pass = "minimum64D.";
 $dbName = "spisetid";
 
 $conn = mysqli_connect($serverName, $usrName, $pass, $dbName);
-$opskriID = 3;
+if (!$_GET['recipe']) {
+    ?><meta http-equiv="refresh" content="0; url=<?php echo getenv('HTTP_HOST') . "/404"?>" /> <?php
+} else {
+    $opskriID = $_GET['recipe'];
+}
 $query = "SELECT id, navn, kategori, antal, fremgangsmaade, importurl, imageurl FROM opskrifter WHERE id = " . $opskriID;
 $data = mysqli_query($conn, $query);
 $savedData = mysqli_fetch_all($data, MYSQLI_ASSOC);
@@ -30,16 +34,16 @@ mysqli_close($conn);
                 <table class="table table-borderless">
                     <tbody>
                         <tr><?php
-                            foreach ($savedData as $i => $info) {
-                                ?>
+foreach ($savedData as $i => $info) {
+    ?>
                                 <td>
-                                    <h2><?php echo $info['navn']?></h2>
-                                    </br>Mad til <b><?php echo $info['antal']?></b> personer</br>
-                                    Kategori: <b><?php echo $info['kategori']?></b>
+                                    <h2><?php echo $info['navn'] ?></h2>
+                                    </br>Mad til <b><?php echo $info['antal'] ?></b> personer</br>
+                                    Kategori: <b><?php echo $info['kategori'] ?></b>
                                 </td>
-                                <td><div class="offset2"><img src=<?php echo $info['imageurl']?>></div></td>
+                                <td><div class="offset2"><img src=<?php echo $info['imageurl'] ?>></div></td>
                             </tr>
-                            <?php }
+                        <?php }
                         ?>
                     </tbody>
                 </table>
@@ -50,19 +54,17 @@ mysqli_close($conn);
         <div class="span4 offset1">
             <table class="table table-borderless">
                 <tr>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Ingredienser</th>
-                        </tr>
-                    </thead>
+                <table class="table table-bordered" style="background-color: #88aaa7; border-color: #88aaa7; color: black">
+                    <div class="ribbon-top">
+                        <h2 class="entry-title">Ingredienser</h2>
+                    </div>
                     <tbody>
                         <?php
                         foreach ($ingredientDataSaved as $i => $ingredient) {
                             ?>
                             <tr>
-                                <td><?php echo $ingredient['ing_num'] ?></td>
-                                <td><?php echo $ingredient['ing_meas'] ?></td>
+                                <td style="width:20%"><?php echo $ingredient['ing_num'] ?></span></td>
+                                <td style="width: 10%"><?php echo $ingredient['ing_meas'] ?></td>
                                 <td><?php echo $ingredient['ing_name'] ?></td>
                             </tr>
                             <?php
@@ -74,12 +76,10 @@ mysqli_close($conn);
         </div>
         <div class="span5 offset1">
             <tr>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Fremgangsmåde</th>
-                    </tr>
-                </thead>
+            <table class="table table-bordered" style="border-color: #88aaa7; background-color: #88aaa7; color: black">
+                <div class="ribbon-top">
+                    <h2 class="entry-title">Fremgangsmåde</h2>                                        
+                </div>
                 <tbody>
                     <tr><?php
                         foreach ($savedData as $i => $recipe) {

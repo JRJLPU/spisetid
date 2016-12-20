@@ -37,7 +37,7 @@ get_header();
                     foreach ($savedData as $i => $recipe) {
                         ?>
                         <tr>
-                            <td><a href="<?php echo $recipe['importurl']?>"><?php echo $recipe['navn'] ?></a></td>
+                            <td><a href="<?php echo getenv('HTTP_HOST') . "/opskrifter/opskrift?recipe=" . $recipe['id'];?>"</a><?php echo $recipe['navn'] ?></a></td>
                             <td><?php echo $recipe['kategori'] ?></td>
                             <td><?php
                                 $pic = $recipe['imageurl'];
