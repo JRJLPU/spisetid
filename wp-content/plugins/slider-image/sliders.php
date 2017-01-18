@@ -13,15 +13,9 @@ if ( ! function_exists( 'current_user_can' ) ) {
 function hugeit_slider_show_slider() {
 	global $wpdb;
 
-	session_start();
-	if ( isset( $_REQUEST['csrf_token_hugeit_1752'] ) ) {
-		$_REQUEST['csrf_token_hugeit_1752'] = esc_html( $_REQUEST['csrf_token_hugeit_1752'] );
-		if ( $_SESSION['csrf_token_hugeit_1752'] == $_REQUEST['csrf_token_hugeit_1752'] ) {
-			if ( isset( $_POST['search_events_by_title'] ) ) {
-				$_POST['search_events_by_title'] = esc_html( stripslashes( $_POST['search_events_by_title'] ) );
-			}
-		}
-	}
+    if ( isset( $_POST['search_events_by_title'] ) ) {
+        $_POST['search_events_by_title'] = esc_html( stripslashes( $_POST['search_events_by_title'] ) );
+    }
 	if ( isset( $_POST['asc_or_desc'] ) ) {
 		$_POST['asc_or_desc'] = sanitize_text_field( $_POST['asc_or_desc'] );
 		$_POST['asc_or_desc'] = sanitize_text_field( $_POST['asc_or_desc'] );

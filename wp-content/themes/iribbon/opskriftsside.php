@@ -12,8 +12,9 @@ $pass = "minimum64D.";
 $dbName = "spisetid";
 
 $conn = mysqli_connect($serverName, $usrName, $pass, $dbName);
+
 if (!$_GET['recipe']) {
-    ?><meta http-equiv="refresh" content="0; url=<?php echo getenv('HTTP_HOST') . "/404"?>" /> <?php
+    ?><meta http-equiv="refresh" content="0; url=<?php echo getenv('HTTP_HOST') . "/404" ?>" /> <?php
 } else {
     $opskriID = $_GET['recipe'];
 }
@@ -34,8 +35,8 @@ mysqli_close($conn);
                 <table class="table table-borderless">
                     <tbody>
                         <tr><?php
-foreach ($savedData as $i => $info) {
-    ?>
+                            foreach ($savedData as $i => $info) {
+                                ?>
                                 <td>
                                     <h2><?php echo $info['navn'] ?></h2>
                                     </br>Mad til <b><?php echo $info['antal'] ?></b> personer</br>
@@ -52,31 +53,34 @@ foreach ($savedData as $i => $info) {
     </div>
     <div class="row-fluid">
         <div class="span4 offset1">
-            <table class="table table-borderless">
-                <tr>
-                <table class="table table-bordered" style="background-color: #88aaa7; border-color: #88aaa7; color: black">
-                    <div class="ribbon-top">
-                        <h2 class="entry-title">Ingredienser</h2>
-                    </div>
-                    <tbody>
-                        <?php
-                        foreach ($ingredientDataSaved as $i => $ingredient) {
-                            ?>
-                            <tr>
-                                <td style="width:20%"><?php echo $ingredient['ing_num'] ?></span></td>
-                                <td style="width: 10%"><?php echo $ingredient['ing_meas'] ?></td>
-                                <td><?php echo $ingredient['ing_name'] ?></td>
-                            </tr>
-                            <?php
-                        }
+            <!--<table class="table table-borderless">-->
+            <tr>
+            <table class="table table-bordered" style="background-color: rgba(136, 170, 167, 0.6); border-color: rgba(136, 170, 167, 0.6); color: black">
+                <div class="ribbon-top">
+                    <h2 class="entry-title">Ingredienser</h2>
+                </div>
+                <tbody>
+                    <?php
+                    foreach ($ingredientDataSaved as $i => $ingredient) {
                         ?>
-                    </tbody>
-                </table>
-                </tr>
+                        <tr>
+                            <td>
+                                <?php echo $ingredient['ing_num'] ?>
+                                <?php echo $ingredient['ing_meas'] ?>
+                                <?php echo $ingredient['ing_name'] ?>
+
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+            </tr>
         </div>
         <div class="span5 offset1">
             <tr>
-            <table class="table table-bordered" style="border-color: #88aaa7; background-color: #88aaa7; color: black">
+            <table class="table table-bordered" style="border-color: rgba(136, 170, 167, 0.6); background-color: rgba(136, 170, 167, 0.6); color: black">
                 <div class="ribbon-top">
                     <h2 class="entry-title">Fremgangsmåde</h2>                                        
                 </div>
