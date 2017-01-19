@@ -181,28 +181,6 @@ if (isset($_POST['search'])) {
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 </style>
-<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"/>
-<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script>
-    $(document).ready(function() {
-    var t = $('#recipe_table').DataTable( {
-        "columnDefs": [ {
-            "searchable": false,
-            "orderable": false,
-            "targets": 0
-        } ],
-        "order": [[ 1, 'asc' ]]
-    } );
- 
-    t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
-} );
-</script>
-
 
 <div class="container">
     <div class="row-fluid">
@@ -213,9 +191,7 @@ if (isset($_POST['search'])) {
             <form class="form-wrapper cf" action="." method="POST">
                 <input type="text" name="search" id="search" value="" data-swplive="true" placeholder="Skriv dine ingredienser her, separeret med et komma..."/>
                 <button type="submit">Søg</button>
-                
-            </form>
-            <table class="table" id="recipe_table">
+                <table class="table" id="recipe_table">
                     <thead>
                         <tr>
                             <th>Navn</th>
@@ -227,6 +203,7 @@ if (isset($_POST['search'])) {
                         <?php echo $data ?>
                     </tbody>
                 </table>
+            </form>
         </div>
     </div>
 </div>
