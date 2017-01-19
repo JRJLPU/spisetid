@@ -247,9 +247,6 @@ function hugeit_slider_html_show_sliders( $rows, $pageNav, $sort, $cat_row ) {
 			<input type="hidden" name="saveorder" id="saveorder" value="" />
 			<input type="hidden" name="csrf_token_hugeit_1752" value="csrf_token_hugeit_1752" />
 
-			<?php
-				$_SESSION['csrf_token_hugeit_1752'] = 'csrf_token_hugeit_1752';
-			?>
 			</form>
 		</div>
 	</div>
@@ -836,11 +833,8 @@ function hugeit_slider_html_edit_slider($ord_elem, $count_ord,$images,$row,$cat_
 			</div>
 		</div>
 	</div>
-<!--	<input type="hidden" name="task" value="" />-->
-<!--	 <input type="hidden" name="csrf_token_hugeit_1752" value="csrf_token_hugeit_1752" />-->
 			 <?php
 			wp_nonce_field(-1, 'hugeit_slider_apply_form');
-			//$_SESSION['csrf_token_hugeit_1752'] = 'csrf_token_hugeit_1752';
 			?>
 </form>
 </div>

@@ -6,6 +6,19 @@
 
 get_header();
 ?>
+<style type="text/css">
+.form-wrapper {
+        width: 700px;
+        padding: 15px;
+        margin: 50px auto 17px auto;
+        background: #444;
+        background: rgba(0,0,0,.2);
+        border-radius: 10px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+    }
+
+</style>
+
 <div class="container">
     <div class="row">
         <div class="span10 offset1">
@@ -24,7 +37,8 @@ get_header();
             $savedData = mysqli_fetch_all($data, MYSQLI_ASSOC);
             mysqli_close($conn);
             ?>
-            <table class="table" >
+            <div class="span1">
+            <table class="form-wrapper">
                 <thead>
                     <tr>
                         <th>Navn</th>
@@ -37,7 +51,8 @@ get_header();
                     foreach ($savedData as $i => $recipe) {
                         ?>
                         <tr>
-                            <td><a href="<?php echo getenv('HTTP_HOST') . "/opskrifter/opskrift?recipe=" . $recipe['id'];?>"</a><?php echo $recipe['navn'] ?></a></td>
+                            <td><a href="<?php echo getenv('HTTP_HOST') . "/opskrifter/opskrift?recipe=" 
+                                    . $recipe['id'];?>"</a><?php echo $recipe['navn'] ?></a></td>
                             <td><?php echo $recipe['kategori'] ?></td>
                             <td><?php
                                 $pic = $recipe['imageurl'];
@@ -49,7 +64,7 @@ get_header();
                     ?>
                 </tbody>
             </table>
-
+            </div>
         </div>
     </div>
 </div>

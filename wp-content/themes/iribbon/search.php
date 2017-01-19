@@ -13,8 +13,8 @@
  * @link     http://www.cyberchimps.com/
  */
 
-get_header(); ?>
-
+get_header(); 
+?>
 	<div id="search_page" class="container-full-width">
 
 		<div class="container">
@@ -69,5 +69,4 @@ get_header(); ?>
 		<!-- container -->
 
 	</div><!-- container full width -->
-
 <?php get_footer(); ?>

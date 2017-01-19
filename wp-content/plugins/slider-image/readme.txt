@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/slider/
 Tags: slider, wordpress slider, image slider, Photo Slider, slider plugin, responsive slider, easy slider, post slider, video slider, youtube slider, gallery slider, images slider
 Requires at least: 3.0.1
-Tested up to: 4.6.1
-Stable tag: 3.1.98
+Tested up to: 4.7
+Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -413,6 +413,16 @@ After installation of pro version, in General Options all your changes will be s
 If you think, that you found a bug in our [WordPress Slider](http://huge-it.com/slider/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Changelog ==
+
+= 3.2.1 =
+* Removed sessions and nonces as reported from a user over WordPress forum and fixed the issue with errors.
+
+= 3.2.0 =
+* IMPORTANT: Please reverse to previous version of the slider by updating , while we investigate the conflict with reported errors.
+
+= 3.1.99 =
+* 1) removed some sessions and nonces as reported from a user over WordPress forum.
+* 2) Added the new featured plugins page to demonstrate new plugings.
 
 = 3.1.98 =
 * 1) Fixed reported bug on front end
